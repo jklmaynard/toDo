@@ -1,0 +1,9 @@
+#tasks li:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+#completed li:hover {
+  color: red;
+  text-decoration: underline;
+}
