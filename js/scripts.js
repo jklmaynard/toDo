@@ -1,5 +1,5 @@
-var fuckoff = function() {
-  return alert("into the Darkness!!!")
+var removeTask = function() {
+  newList.remove(this)
 };
 
 
@@ -37,12 +37,13 @@ $(document).ready(function() {
 
       $("#tasks li").last().click(function(event) {
         $(this).appendTo("#completed");
-      fuckoff();
-
+    debugger;    
+        newList.remove(this);
         $("#completed li").click(function(event){
           $(this).remove();
         });
       });
+
     });
   });
 });
