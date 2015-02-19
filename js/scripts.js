@@ -1,20 +1,44 @@
 $(document).ready(function() {
-  $("form#new_task").submit(function(event) {
+
+//Add a list object, including name an an array of tasks
+
+  $("form#newList").submit(function(event) {
     event.preventDefault();
-    var task = $("input#task").val();
-    var dueDate = $("input#duedate").val()
-    var newTask = { taskey: task, duedate: dueDate };
+    var inputtedListName = $("input#listName").val();
+    var newList = { listName: inputtedListName, tasks: [] };
 
-    $("#tasks").append("<li>" + newTask.taskey + " " + newTask.duedate + "</li>");
-    $("input#task").val("");
-    $("input#duedate").val("");
+    $("ul#listOfLists").append("<li><span class='newestList'>" + newList.listName + "</span></li>")
 
-    $("#tasks li").last().click(function(event) {
-      $(this).appendTo("#completed");
+    $("input#listName").val("");
 
-      $("#completed li").click(function(event){
-        $(this).remove();
+    $(".newestList").last().click(function(event) {
+    $("#listTitle").show();
+    $("#listTitle h1").text(newList.listName);
+
+    });
+
+    $("form#newTask").submit(function(event) {
+      event.preventDefault();
+      var task = $("input#task").val();
+      var dueDate = $("input#duedate").val()
+      var newTask = { taskey: task, duedate: dueDate };
+
+      $("#tasks").append("<li>" + newList.tasks + "</li>");
+      $("input#task").val("");
+      $("input#duedate").val("");
+      newList.tasks.push(newTask)
+
+      $("#tasks li").last().click(function(event) {
+        $(this).appendTo("#completed");
+
+        $("#completed li").click(function(event){
+          $(this).remove();
+        });
       });
     });
   });
+
+
+
+//for now, this should be in individual lists?
 });

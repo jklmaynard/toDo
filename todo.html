@@ -12,28 +12,40 @@
       <h1>To Do List</h1>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" id="list">
+          <form id="newList">
+            <input type="text" id="listName" placeholder="Name">
 
-            <h2>Add a Task:</h2>
+            <button type="submit" class="btn btn-sm btn-primary">Add List</button>
+          </form>
 
-            <form id="new_task">
-              <div class="form-group">
-                <input type="text" id="task" placeholder="Task">
-                <input type="text" id="duedate" placeholder="Date Due">
 
-              </div>
-              <button type="submit" class="btn btn-sm btn-primary">Button</button>
-            </form>
+          <ul id="listOfLists">
+          </ul>
+        </div>
 
-            <h2>Tasks:</h2>
-            <ul id="tasks">
-              <!-- <span id="tasks"></span> -->
-            </ul>
+        <div id="listTitle" class="col-md-6">
+           <h1></h1>
+          <h2>Add a Task:</h2>
 
-            <h2>Tasks Completed!</h2>
-            <ul id ="completed">
+          <form id="newTask">
+            <div class="form-group">
+              <input type="text" id="task" placeholder="Task">
+              <input type="text" id="duedate" placeholder="Date Due">
 
-            </ul>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Button</button>
+          </form>
+
+          <h2>Tasks:</h2>
+          <ul id="tasks">
+
+          </ul>
+
+          <h2>Tasks Completed!</h2>
+          <ul id ="completed">
+
+          </ul>
         </div>
       </div>
     </div>
