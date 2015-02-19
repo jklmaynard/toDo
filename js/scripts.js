@@ -1,35 +1,43 @@
-$(document).ready(function() {
+var fuckoff = function() {
+  return alert("into the Darkness!!!")
+};
 
-//Add a list object, including name an an array of tasks
+
+$(document).ready(function() {
 
   $("form#newList").submit(function(event) {
     event.preventDefault();
     var inputtedListName = $("input#listName").val();
     var newList = { listName: inputtedListName, tasks: [] };
 
-    $("ul#listOfLists").append("<li><span class='newestList'>" + newList.listName + "</span></li>")
+    $("ul#listOfLists").append("<li style='list-style: none;'><span class='newestList'>" + newList.listName + "</span></li>")
 
     $("input#listName").val("");
 
     $(".newestList").last().click(function(event) {
-    $("#listTitle").show();
-    $("#listTitle h1").text(newList.listName);
-
+      $("#listTitle").show();
+      $("#listTitle h1").text(newList.listName);
     });
 
     $("form#newTask").submit(function(event) {
       event.preventDefault();
-      var task = $("input#task").val();
-      var dueDate = $("input#duedate").val()
-      var newTask = { taskey: task, duedate: dueDate };
+      $("#newTask").each(function(task) {
+        var task = $(this).find("input.task").val();
+        var dueDate = $(this).find("input.duedate").val();
+        var newTask = { taskey: task, duedate: dueDate };
+        newList.tasks.push(newTask);
+      });
 
-      $("#tasks").append("<li>" + newList.tasks + "</li>");
-      $("input#task").val("");
-      $("input#duedate").val("");
-      newList.tasks.push(newTask)
+      $("input.task").val("");
+      $("input.duedate").val("");
+      newList.tasks.forEach(function(task) {
+        $("#tasks").append("<li style='list-style: none;'>" + task.taskey + " " + task.duedate + "</li>");
+      });
+
 
       $("#tasks li").last().click(function(event) {
         $(this).appendTo("#completed");
+      fuckoff();
 
         $("#completed li").click(function(event){
           $(this).remove();
@@ -37,8 +45,4 @@ $(document).ready(function() {
       });
     });
   });
-
-
-
-//for now, this should be in individual lists?
 });
