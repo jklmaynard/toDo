@@ -1,7 +1,19 @@
-var removeTask = function() {
-  newList.remove(this)
-};
+var List = {
 
+  tasks: [],
+  addTask: function(name, dueDate) {
+    task = { taskey: name, duedate: dueDate }
+    List.tasks.push(task)
+  },
+
+  removeTask: function(taskey) {
+    for(var i = List.tasks.length - 1; i >= 0; i--) {
+      if(List.tasks[i] === this) {
+         List.tasks.splice(i, 1);
+      }
+    }
+  }
+}
 
 $(document).ready(function() {
 
@@ -37,7 +49,6 @@ $(document).ready(function() {
 
       $("#tasks li").last().click(function(event) {
         $(this).appendTo("#completed");
-    debugger;    
         newList.remove(this);
         $("#completed li").click(function(event){
           $(this).remove();
